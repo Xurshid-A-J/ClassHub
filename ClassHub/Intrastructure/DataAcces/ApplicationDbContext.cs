@@ -13,7 +13,7 @@ namespace Intrastructure.DataAcces
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
         { }
-
+        
         public DbSet<Mark> Marks { get; set; }
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<Group> Groups { get; set; }

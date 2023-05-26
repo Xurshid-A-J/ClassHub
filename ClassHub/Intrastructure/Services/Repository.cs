@@ -16,31 +16,39 @@ namespace Intrastructure.Services
         public Repository(IApplicationDbContext dbContext) 
             =>_dbContext = dbContext;
         
-        public Task<T> CreateAsync(T entity)
+        public async Task<T> CreateAsync(T entity)
         {
-            throw new NotImplementedException();
+           await this._dbContext.Set<T>().AddAsync(entity);
+            await _dbContext.SaveChangesAsync();
+
+            return entity;
         }
 
-        public Task<T> DeleteAsync(Guid Id)
+        public async Task<T> DeleteAsync(Guid Id)
         {
-            throw new NotImplementedException();
+            var entity = await this._dbContext.Set<T>().FindAsync(Id);
+            this._dbContext.Set<T>().Remove(entity);
+
+            return entity;
         }
 
         public Task<IQueryable<T>> GetAsync(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            return Task.FromResult( this._dbContext.Set<T>().Where(expression));
+
         }
 
-        public Task<T?> GetByIdAsync(Guid id)
+        public async Task<T?> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await this._dbContext.Set<T>().FindAsync(id);
         }
 
-        public Task<T> UpdateAsync(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+           this._dbContext.Set<T>().Update(entity);
+           await this._dbContext.SaveChangesAsync();
+
+            return entity;
         }
-
-
     }
 }

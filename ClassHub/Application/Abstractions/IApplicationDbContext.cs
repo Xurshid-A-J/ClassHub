@@ -13,8 +13,9 @@ using System.Threading.Tasks;
 
 namespace Application.Abstractions
 {
-    public interface IApplicationDbContext:DbContext
+    public interface IApplicationDbContext
     {
+        public DbSet<T> Set<T>() where T : class;
         public DbSet<Mark> Marks { get; set; }
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<Group> Groups { get; set; }
