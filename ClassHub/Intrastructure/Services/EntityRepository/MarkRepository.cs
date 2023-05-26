@@ -10,35 +10,11 @@ using System.Threading.Tasks;
 
 namespace Intrastructure.Services.EntityRepository
 {
-    internal class MarkRepository : IMarkRepository
+    public class MarkRepository : Repository<Mark>,IMarkRepository
     {
         private readonly IApplicationDbContext dbContext;
 
-        public MarkRepository(IApplicationDbContext dbContext)
+        public MarkRepository(IApplicationDbContext dbContext):base(dbContext)
             => this.dbContext = dbContext;
-        public Task<Mark> CreateAsync(Mark entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Mark> DeleteAsync(Guid Id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IQueryable<Mark>> GetAsync(Expression<Func<Mark, bool>> expression)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Mark?> GetByIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Mark> UpdateAsync(Mark entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

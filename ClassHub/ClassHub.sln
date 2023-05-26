@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassHub", "ClassHub\ClassHub.csproj", "{2232DD66-0412-4483-95EC-8FCFDAE4993D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassHubUI", "ClassHub\ClassHubUI.csproj", "{2232DD66-0412-4483-95EC-8FCFDAE4993D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{4EF7392C-BD53-4C47-AEBB-73E48E820463}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{47468820-2381-4C62-A921-67A38596C1B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{47468820-2381-4C62-A921-67A38596C1B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intrastructure", "Intrastructure\Intrastructure.csproj", "{C2CEF5FD-C9DC-44B6-B95B-865B834A9308}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intrastructure", "Intrastructure\Intrastructure.csproj", "{C2CEF5FD-C9DC-44B6-B95B-865B834A9308}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.IEntityRepositories;
+﻿using Application.Abstractions;
+using Application.Interfaces.IEntityRepositories;
 using Domain.Entities.Students;
 using System;
 using System.Collections.Generic;
@@ -9,31 +10,11 @@ using System.Threading.Tasks;
 
 namespace Intrastructure.Services.EntityRepository
 {
-    internal class StudentRepository : IStudentRepository
+    public class StudentRepository : Repository<Student>,IStudentRepository
     {
-        public Task<Student> CreateAsync(Student entity)
-        {
-            throw new NotImplementedException();
-        }
+        private readonly IApplicationDbContext dbContext;
 
-        public Task<Student> DeleteAsync(Guid Id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IQueryable<Student>> GetAsync(Expression<Func<Student, bool>> expression)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Student?> GetByIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Student> UpdateAsync(Student entity)
-        {
-            throw new NotImplementedException();
-        }
+        public StudentRepository(IApplicationDbContext dbContext):base(dbContext)
+            =>this.dbContext = dbContext;
     }
 }

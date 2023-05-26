@@ -10,35 +10,11 @@ using System.Threading.Tasks;
 
 namespace Intrastructure.Services.EntityRepository
 {
-    internal class GroupRepository : IGroupRepository
+    public class GroupRepository : Repository<Group>, IGroupRepository
     {
         private readonly IApplicationDbContext dbContext;
 
-        public GroupRepository(IApplicationDbContext dbContext)
+        public GroupRepository(IApplicationDbContext dbContext):base(dbContext)
             => this.dbContext = dbContext;
-        public Task<Group> CreateAsync(Group entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Group> DeleteAsync(Guid Id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IQueryable<Group>> GetAsync(Expression<Func<Group, bool>> expression)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Group?> GetByIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Group> UpdateAsync(Group entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.IEntityRepositories;
+﻿using Application.Abstractions;
+using Application.Interfaces.IEntityRepositories;
 using Domain.IdentityEntities;
 using System;
 using System.Collections.Generic;
@@ -10,31 +11,11 @@ using System.Threading.Tasks;
 
 namespace Intrastructure.Services.EntityRepository
 {
-    internal class PermissionRepository : IPermissionRepository
+    public class PermissionRepository : Repository<Permission>, IPermissionRepository
     {
-        public Task<Permission> CreateAsync(Permission entity)
-        {
-            throw new NotImplementedException();
-        }
+        private readonly IApplicationDbContext dbContext;
 
-        public Task<Permission> DeleteAsync(Guid Id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IQueryable<Permission>> GetAsync(Expression<Func<Permission, bool>> expression)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Permission?> GetByIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Permission> UpdateAsync(Permission entity)
-        {
-            throw new NotImplementedException();
-        }
+        public PermissionRepository(IApplicationDbContext dbContext) : base(dbContext)
+            => this.dbContext = dbContext;
     }
 }

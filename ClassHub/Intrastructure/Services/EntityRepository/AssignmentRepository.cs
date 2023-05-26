@@ -16,33 +16,5 @@ namespace Intrastructure.Services.EntityRepository
 
         public AssignmentRepository(IApplicationDbContext dbContext):base(dbContext)
             =>this.dbContext = dbContext;
-
-        public virtual async Task<Assignment> CreateAsync(Assignment entity)
-        {
-            dbContext.Assignments.Add(entity);
-            await dbContext.SaveChangesAsync();
-
-            return entity;
-        }
-
-        public Task<Assignment> DeleteAsync(Guid Id)
-        {
-            dbContext.Set<T>
-        }
-
-        public Task<IQueryable<Assignment>> GetAsync(Expression<Func<Assignment, bool>> expression)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Assignment?> GetByIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Assignment> UpdateAsync(Assignment entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

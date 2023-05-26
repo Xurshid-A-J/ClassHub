@@ -11,36 +11,12 @@ using System.Threading.Tasks;
 
 namespace Intrastructure.Services.EntityRepository
 {
-    internal class TeacherRepository : ITeacherRepository
+    internal class TeacherRepository : Repository<Teacher>,ITeacherRepository
     {
         private readonly IApplicationDbContext dbContext;
 
-        public TeacherRepository(IApplicationDbContext dbContext)
+        public TeacherRepository(IApplicationDbContext dbContext):base(dbContext)
             => this.dbContext = dbContext;
 
-        public Task<Teacher> CreateAsync(Teacher entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Teacher> DeleteAsync(Guid Id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IQueryable<Teacher>> GetAsync(Expression<Func<Teacher, bool>> expression)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Teacher?> GetByIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Teacher> UpdateAsync(Teacher entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

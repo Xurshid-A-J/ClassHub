@@ -4,6 +4,7 @@ using Domain.Entities.Marks;
 using Domain.Entities.Notices;
 using Domain.Entities.Students;
 using Domain.Entities.Teachers;
+using Domain.IdentityEntities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,10 @@ namespace Application.Abstractions
     public interface IApplicationDbContext
     {
         public DbSet<T> Set<T>() where T : class;
+
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<Role> Roles { get; set; }
+
         public DbSet<Mark> Marks { get; set; }
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<Group> Groups { get; set; }
