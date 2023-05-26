@@ -1,0 +1,12 @@
+D:\My Folder\Projects\ClassManagerPortal\ClassHub\Domain\bin\Debug\net7.0\Domain.deps.json
+D:\My Folder\Projects\ClassManagerPortal\ClassHub\Domain\bin\Debug\net7.0\Domain.dll
+D:\My Folder\Projects\ClassManagerPortal\ClassHub\Domain\bin\Debug\net7.0\Domain.pdb
+D:\My Folder\Projects\ClassManagerPortal\ClassHub\Domain\obj\Debug\net7.0\Domain.csproj.AssemblyReference.cache
+D:\My Folder\Projects\ClassManagerPortal\ClassHub\Domain\obj\Debug\net7.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\My Folder\Projects\ClassManagerPortal\ClassHub\Domain\obj\Debug\net7.0\Domain.AssemblyInfoInputs.cache
+D:\My Folder\Projects\ClassManagerPortal\ClassHub\Domain\obj\Debug\net7.0\Domain.AssemblyInfo.cs
+D:\My Folder\Projects\ClassManagerPortal\ClassHub\Domain\obj\Debug\net7.0\Domain.csproj.CoreCompileInputs.cache
+D:\My Folder\Projects\ClassManagerPortal\ClassHub\Domain\obj\Debug\net7.0\Domain.dll
+D:\My Folder\Projects\ClassManagerPortal\ClassHub\Domain\obj\Debug\net7.0\refint\Domain.dll
+D:\My Folder\Projects\ClassManagerPortal\ClassHub\Domain\obj\Debug\net7.0\Domain.pdb
+D:\My Folder\Projects\ClassManagerPortal\ClassHub\Domain\obj\Debug\net7.0\ref\Domain.dll
