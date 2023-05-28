@@ -21,7 +21,7 @@ namespace Domain.Entities.Assignments
         public Guid GroupId { get; set; }
         public Group Group { get; set; }
 
-        public ICollection<Student> Students { get; set; }
+        public ICollection<Student> Students { get;private set; }= new List<Student>();
 
     }
 }

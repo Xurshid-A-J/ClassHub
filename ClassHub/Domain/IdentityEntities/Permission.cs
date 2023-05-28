@@ -6,6 +6,6 @@ namespace Domain.IdentityEntities
     {
         public string? PermissionName { get; set; }
 
-        public virtual ICollection<Role>? Roles { get; set; }
+        public virtual ICollection<Role>? Roles { get;private set; } = new List<Role>();
     }
 }

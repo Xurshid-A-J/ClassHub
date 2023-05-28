@@ -13,7 +13,7 @@ namespace Domain.Entities.Groups
     {
         public string Name { get; set; }
 
-        public ICollection<Teacher> Teachers { get; set; }
-        public ICollection<Student> Students { get; set; }
+        public ICollection<Teacher> Teachers { get; set; } = new List<Teacher>();
+        public ICollection<Student> Students { get; set; } = new List<Student>();
     }
 }

@@ -18,10 +18,10 @@ namespace Domain.Entities.Teachers
         public Guid GroupId { get; set; }
         public Group Group { get; set; }
 
-        public ICollection<Student> Students { get; set; }
-        public ICollection<Mark> Marks { get; set; }
-        public ICollection<Notice> Notices { get; set; }
-        public ICollection<Assignment> Assignments { get; set; }
+        public ICollection<Student> Students { get; set; } = new List<Student>();
+        public ICollection<Mark> Marks { get; set; } = new List<Mark>();
+        public ICollection<Notice> Notices { get; set; } = new List<Notice>();
+        public ICollection<Assignment> Assignments { get; set; } = new List<Assignment>();
     }
 
 }

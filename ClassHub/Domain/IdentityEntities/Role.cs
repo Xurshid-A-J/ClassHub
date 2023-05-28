@@ -6,7 +6,7 @@ namespace Domain.IdentityEntities
     {
         public string Name { get; set; }
 
-        public virtual ICollection<Permission>? Permissions { get; set; }
-        public virtual ICollection<UserEntity>? UserRoles { get; set; }
+        public virtual ICollection<Permission>? Permissions { get;private set; } = new List<Permission>();
+        public virtual ICollection<UserEntity>? UserRoles { get;private set; } = new List<UserEntity>();
     }
 }

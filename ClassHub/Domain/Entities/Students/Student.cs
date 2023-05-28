@@ -19,7 +19,7 @@ namespace Domain.Entities.Students
         public Guid TeacherId { get; set; }
         public Teacher Teacher { get; set; }
 
-        public ICollection<Mark> Marks { get; set; }
-        public ICollection<Assignment> Assignments { get; set; }
+        public ICollection<Mark> Marks { get; set; } = new List<Mark>();
+        public ICollection<Assignment> Assignments { get; set; } = new List<Assignment>();
     }
 }
