@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Intrastructure.DataAcces.Interceptors
+namespace Application.Interfaces
 {
-    internal class AuditableSCIass
+    public interface ICurrentUserService
     {
+        public string UserId { get; }
     }
 }

@@ -6,14 +6,21 @@ using Domain.Entities.Notices;
 using Domain.Entities.Students;
 using Domain.Entities.Teachers;
 using Domain.IdentityEntities;
+using Intrastructure.DataAcces.Interceptors;
 using Microsoft.EntityFrameworkCore;
 
 namespace Intrastructure.DataAcces
 {
     public partial class ApplicationDbContext : DbContext, IApplicationDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
-        { }
+        private readonly AuditableEntitySaveChangesInterceptor interceptor;
+        public ApplicationDbContext(
+                DbContextOptions<ApplicationDbContext> options, 
+                AuditableEntitySaveChangesInterceptor interceptor) :base(options)
+        { 
+            this.interceptor = interceptor; 
+        }
+
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<Role> Roles { get; set; }
 
@@ -23,5 +30,9 @@ namespace Intrastructure.DataAcces
         public DbSet<Notice> Notices { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        =>optionsBuilder.AddInterceptors(interceptor);
+        
     }
 }
