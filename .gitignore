@@ -361,3 +361,12 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/ClassHub/ClassHub/appsettings.json
+/ClassHub/Domain/obj/Debug/net7.0/Domain.csproj.CoreCompileInputs.cache
+/ClassHub/Domain/obj/Debug/net7.0/Domain.pdb
+/ClassHub/Domain/obj/Debug/net7.0/refint/Domain.dll
+/ClassHub/Domain/obj/Debug/net7.0/ref/Domain.dll
+/ClassHub/Domain/obj/Debug/net7.0/Domain.dll
+/ClassHub/Domain/bin/Debug/net7.0/Domain.pdb
+/ClassHub/Domain/bin/Debug/net7.0/Domain.dll
+/ClassHub/ExampleSOLID
