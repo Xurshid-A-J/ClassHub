@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Common
 {
-    public class UserEntity:BaseAuditableEntity
+    public abstract class UserEntity:BaseAuditableEntity
     {
         public string FullName { get; set; }
         public string Email { get; set; }
