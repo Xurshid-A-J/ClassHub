@@ -2,7 +2,9 @@
 using Application.Exceptions.Permissions;
 using Application.Interfaces.IEntityRepositories;
 using Domain.IdentityEntities;
+using LazyCache;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System.Linq.Expressions;
 
 namespace ClassHubUI.Controllers
@@ -10,6 +12,8 @@ namespace ClassHubUI.Controllers
     public class PermissionController : ApiControllerBase<Permission>
     {
         private readonly IPermissionRepository permissionRepository;
+        private readonly IMemoryCache memoryCache;
+        private readonly IAppCache appCache;
 
         public PermissionController(IPermissionRepository permissionRepository)
             =>this.permissionRepository = permissionRepository;
@@ -22,11 +26,12 @@ namespace ClassHubUI.Controllers
             IEnumerable<GetPermissionDTO> mappedPermissions = 
                 _mapper.Map<IEnumerable<GetPermissionDTO>>(permissions);
 
+          
             return Ok(mappedPermissions);
         }
 
 
-        [HttpGet("[action]/{id}")]
+        [HttpGet("[action]/{Id}")]
         public async Task<ActionResult<GetPermissionDTO>> GetById(Guid Id)
         {
             Permission maybePermission = await this.permissionRepository.GetByIdAsync(Id) 

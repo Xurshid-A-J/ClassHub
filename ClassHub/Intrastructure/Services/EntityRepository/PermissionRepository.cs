@@ -18,6 +18,7 @@ namespace Intrastructure.Services.EntityRepository
     public class PermissionRepository : Repository<Permission>, IPermissionRepository
     {
         private readonly IApplicationDbContext dbContext;
+        private readonly IPermissionValidator permissionValidator;
 
         public PermissionRepository(
             IApplicationDbContext dbContext) : base(dbContext)
@@ -27,7 +28,7 @@ namespace Intrastructure.Services.EntityRepository
 
         public override async Task<Permission> CreateAsync(Permission permission)
         {
-            //await ValidatePermissionOnAddAsync(permission);
+          
 
             return await base.CreateAsync(permission);
         }

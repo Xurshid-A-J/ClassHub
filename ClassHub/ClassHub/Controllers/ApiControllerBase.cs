@@ -11,7 +11,7 @@ namespace ClassHubUI.Controllers
     {
         protected IMapper _mapper => HttpContext.RequestServices.GetRequiredService<IMapper>();
 
-        //protected IValidator<TModel> _validator => HttpContext.RequestServices.GetRequiredService<IValidator<TModel>>();
+        protected IValidator<TModel> _validator => HttpContext.RequestServices.GetRequiredService<IValidator<TModel>>();
 
 
 

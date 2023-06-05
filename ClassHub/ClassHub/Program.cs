@@ -25,13 +25,13 @@ public class Program
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseSwaggerUI( c =>c.DisplayRequestDuration() );
         }
-
+       
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
-
+        app.UseResponseCaching();
         app.MapControllers();
 
         app.Run();
