@@ -12,9 +12,7 @@ namespace Intrastructure.Services.EntityRepository
 {
     public class AssignmentRepository : Repository<Assignment>, IAssignmentRepository
     {
-        private readonly IApplicationDbContext dbContext;
-
-        public AssignmentRepository(IApplicationDbContext dbContext):base(dbContext)
-            =>this.dbContext = dbContext;
+        public AssignmentRepository(IApplicationDbContext dbContext) : base(dbContext)
+        { }
     }
 }

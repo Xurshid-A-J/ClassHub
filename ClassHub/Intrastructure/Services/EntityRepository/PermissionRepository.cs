@@ -17,43 +17,9 @@ namespace Intrastructure.Services.EntityRepository
 {
     public class PermissionRepository : Repository<Permission>, IPermissionRepository
     {
-        private readonly IApplicationDbContext dbContext;
-
         public PermissionRepository(
             IApplicationDbContext dbContext) : base(dbContext)
-        {
-            this.dbContext = dbContext;
-        }
+        { }
 
-        public override async Task<Permission> CreateAsync(Permission permission)
-        {
-            //await ValidatePermissionOnAddAsync(permission);
-
-            return await base.CreateAsync(permission);
-        }
-
-        public override async Task<Permission?> GetByIdAsync(Guid id)
-        {
-            var maybePermission = await base.GetByIdAsync(id);
-          
-            if (maybePermission == null)
-            {
-                throw new NotFoundException<Permission>(id);
-            }
-
-            return maybePermission;
-        }
-        private Task ValidatePermissionOnAddAsync(Permission permission)
-        {
-            //var validation = new PermissionValidator();
-            //var validationResult = await validation.ValidateAsync(permission);
-
-            //if (!validationResult.IsValid)
-            //{
-            //    throw new InvalidEntityException<Permission>(validationResult.Errors);
-            //}
-
-            return null;
-        }
     }
 }

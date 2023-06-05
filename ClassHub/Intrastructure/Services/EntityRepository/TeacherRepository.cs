@@ -11,12 +11,10 @@ using System.Threading.Tasks;
 
 namespace Intrastructure.Services.EntityRepository
 {
-    internal class TeacherRepository : Repository<Teacher>,ITeacherRepository
+    internal class TeacherRepository : Repository<Teacher>, ITeacherRepository
     {
-        private readonly IApplicationDbContext dbContext;
-
-        public TeacherRepository(IApplicationDbContext dbContext):base(dbContext)
-            => this.dbContext = dbContext;
+        public TeacherRepository(IApplicationDbContext dbContext) : base(dbContext)
+        { }
 
     }
 }

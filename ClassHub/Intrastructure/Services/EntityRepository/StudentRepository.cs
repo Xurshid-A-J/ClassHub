@@ -12,9 +12,7 @@ namespace Intrastructure.Services.EntityRepository
 {
     public class StudentRepository : Repository<Student>,IStudentRepository
     {
-        private readonly IApplicationDbContext dbContext;
-
-        public StudentRepository(IApplicationDbContext dbContext):base(dbContext)
-            =>this.dbContext = dbContext;
+        public StudentRepository(IApplicationDbContext dbContext) : base(dbContext)
+        { }
     }
 }

@@ -12,9 +12,7 @@ namespace Intrastructure.Services.EntityRepository
 {
     public class NoticeRepository :Repository<Notice>, INoticeRepository
     {
-        private readonly IApplicationDbContext dbContext;
-
         public NoticeRepository(IApplicationDbContext dbContext) : base(dbContext)
-            => this.dbContext = dbContext;
+        { }
     }
 }
