@@ -1,9 +1,5 @@
-﻿using Domain.IdentityEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Application.Validations.Permissions;
+using Domain.IdentityEntities;
 
 namespace Application.Interfaces.IEntityRepositories
 {

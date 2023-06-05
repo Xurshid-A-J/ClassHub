@@ -8,6 +8,6 @@ namespace Application.DTOs.Permission
 {
     public class CreatePermissionDTO
     {
-        public string Name { get; set; }
+        public string PermissionName { get; set; }
     }
 }

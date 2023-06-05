@@ -1,4 +1,4 @@
-﻿using Domain.Entities.Assignments;
+﻿    using Domain.Entities.Assignments;
 using Domain.Entities.Groups;
 using Domain.Entities.Marks;
 using Domain.Entities.Notices;

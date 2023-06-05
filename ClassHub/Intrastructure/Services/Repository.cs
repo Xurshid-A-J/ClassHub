@@ -16,7 +16,7 @@ namespace Intrastructure.Services
         public Repository(IApplicationDbContext dbContext) 
             =>_dbContext = dbContext;
         
-        public async Task<T> CreateAsync(T entity)
+        public virtual async Task<T> CreateAsync(T entity)
         {
            await this._dbContext.Set<T>().AddAsync(entity);
             await _dbContext.SaveChangesAsync();
@@ -24,7 +24,7 @@ namespace Intrastructure.Services
             return entity;
         }
 
-        public async Task<T> DeleteAsync(Guid Id)
+        public virtual async Task<T> DeleteAsync(Guid Id)
         {
             var entity = await this._dbContext.Set<T>().FindAsync(Id);
             this._dbContext.Set<T>().Remove(entity);
@@ -32,18 +32,18 @@ namespace Intrastructure.Services
             return entity;
         }
 
-        public Task<IQueryable<T>> GetAsync(Expression<Func<T, bool>> expression)
+        public virtual Task<IQueryable<T>> GetAsync(Expression<Func<T, bool>> expression)
         {
             return Task.FromResult( this._dbContext.Set<T>().Where(expression));
 
         }
 
-        public async Task<T?> GetByIdAsync(Guid id)
+        public virtual async Task<T?> GetByIdAsync(Guid id)
         {
             return await this._dbContext.Set<T>().FindAsync(id);
         }
 
-        public async Task<T> UpdateAsync(T entity)
+        public virtual async Task<T> UpdateAsync(T entity)
         {
            this._dbContext.Set<T>().Update(entity);
            await this._dbContext.SaveChangesAsync();

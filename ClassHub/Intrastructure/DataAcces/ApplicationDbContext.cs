@@ -1,4 +1,5 @@
 ﻿using Application.Abstractions;
+using Domain.Common;
 using Domain.Entities.Assignments;
 using Domain.Entities.Groups;
 using Domain.Entities.Marks;
@@ -31,8 +32,23 @@ namespace Intrastructure.DataAcces
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
 
+
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         =>optionsBuilder.AddInterceptors(interceptor);
-        
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserEntity>().HasKey(t => t.Id);
+
+            modelBuilder.Entity<Student>().HasBaseType<UserEntity>().ToTable("Students");
+            modelBuilder.Entity<Teacher>().HasBaseType<UserEntity>().ToTable("Teachers");
+
+            base.OnModelCreating(modelBuilder);
+        }
+
+
+
     }
 }
