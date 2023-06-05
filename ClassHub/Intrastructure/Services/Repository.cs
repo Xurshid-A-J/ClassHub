@@ -24,18 +24,17 @@ namespace Intrastructure.Services
             return entity;
         }
 
-        public virtual async Task<T> DeleteAsync(Guid Id)
+        public virtual async Task<T> DeleteAsync(T entity)
         {
-            var entity = await this._dbContext.Set<T>().FindAsync(Id);
             this._dbContext.Set<T>().Remove(entity);
-
+            await this._dbContext.SaveChangesAsync();
+            
             return entity;
         }
 
         public virtual Task<IQueryable<T>> GetAsync(Expression<Func<T, bool>> expression)
         {
             return Task.FromResult( this._dbContext.Set<T>().Where(expression));
-
         }
 
         public virtual async Task<T?> GetByIdAsync(Guid id)
@@ -45,8 +44,8 @@ namespace Intrastructure.Services
 
         public virtual async Task<T> UpdateAsync(T entity)
         {
-           this._dbContext.Set<T>().Update(entity);
-           await this._dbContext.SaveChangesAsync();
+            this._dbContext.Set<T>().Update(entity);
+            await this._dbContext.SaveChangesAsync();
 
             return entity;
         }

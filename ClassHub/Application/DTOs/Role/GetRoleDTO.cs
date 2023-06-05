@@ -8,5 +8,7 @@ namespace Application.DTOs.Role
 {
     public class GetRoleDTO
     {
+        public Guid RoleId { get; set;}
+        public string RoleName { get; set;}
     }
 }

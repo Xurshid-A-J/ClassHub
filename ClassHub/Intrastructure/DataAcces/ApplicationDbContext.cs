@@ -33,8 +33,6 @@ namespace Intrastructure.DataAcces
         public DbSet<Teacher> Teachers { get; set; }
 
 
-
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         =>optionsBuilder.AddInterceptors(interceptor);
 
@@ -47,8 +45,6 @@ namespace Intrastructure.DataAcces
 
             base.OnModelCreating(modelBuilder);
         }
-
-
 
     }
 }
