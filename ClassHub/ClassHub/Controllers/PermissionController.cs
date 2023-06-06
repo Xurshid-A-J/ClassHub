@@ -2,9 +2,11 @@
 using Application.Exceptions.Permissions;
 using Application.Interfaces.IEntityRepositories;
 using Application.Validations.Permissions;
+using Domain.Common;
 using Domain.IdentityEntities;
 using LazyCache;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -14,22 +16,38 @@ namespace ClassHubUI.Controllers
     public partial class PermissionController : ApiControllerBase<Permission>
     {
         private readonly IPermissionRepository permissionRepository;
+        private readonly IDistributedCache _distributedCache;
         private readonly IMemoryCache memoryCache;
         private readonly IAppCache appCache;
+        private const string PermissionKey = "Key";
 
-        public PermissionController(IPermissionRepository permissionRepository)
-            =>this.permissionRepository = permissionRepository;
-        
+        public PermissionController(
+            IPermissionRepository permissionRepository,
+            IMemoryCache memoryCache, 
+            IAppCache appCache)
+        {
+            this.permissionRepository = permissionRepository;
+            this.memoryCache = memoryCache;
+            this.appCache = appCache;
+        }
+
         [HttpGet("[action]")]
         public async Task<ActionResult<IEnumerable<GetPermissionDTO>>> GetAsync()
         {
-            IEnumerable<Permission> permissions = await this.permissionRepository.GetAsync(x => true);
 
-            IEnumerable<GetPermissionDTO> mappedPermissions = 
-                _mapper.Map<IEnumerable<GetPermissionDTO>>(permissions);
+            var result = memoryCache.GetOrCreate(PermissionKey, async c =>
+            {
+                c.SetSlidingExpiration(TimeSpan.FromSeconds(3));
+                c.SetAbsoluteExpiration(TimeSpan.FromSeconds(10));
+              
+                IEnumerable<Permission> permissions = await this.permissionRepository.GetAsync(x => true);
 
-          
-            return Ok(mappedPermissions);
+                IEnumerable<GetPermissionDTO> mappedPermissions =
+                    _mapper.Map<IEnumerable<GetPermissionDTO>>(permissions);
+                return mappedPermissions;
+            });
+
+            return Ok(result!.Result);
         }
 
         [HttpGet("[action]/{Id}")]

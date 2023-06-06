@@ -16,9 +16,14 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+        
         builder.Services.AddApplicationServices();
         builder.Services.AddInfrastructureServices(builder.Configuration);
         builder.Services.AddWebUIServices();
+
+
+        builder.Services.AddMemoryCache();
+
 
         var app = builder.Build();
 

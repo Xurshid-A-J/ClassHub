@@ -34,6 +34,7 @@ namespace Intrastructure.Services
 
         public virtual Task<IQueryable<T>> GetAsync(Expression<Func<T, bool>> expression)
         {
+            Thread.Sleep(3000);
             return Task.FromResult( this._dbContext.Set<T>().Where(expression));
         }
 
