@@ -1,6 +1,7 @@
 using Application;
 using Intrastructure;
 using ClassHubUI;
+using Npgsql;
 
 public class Program
 {
@@ -25,7 +26,7 @@ public class Program
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
-            app.UseSwaggerUI( c =>c.DisplayRequestDuration() );
+            app.UseSwaggerUI(options=>options.DisplayRequestDuration());
         }
        
         app.UseHttpsRedirection();

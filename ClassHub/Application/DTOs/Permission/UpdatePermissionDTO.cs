@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.DTOs.Permission
 {
-    public class UpdatePermissionDTO
+    public class UpdatePermissionDTO:GetPermissionDTO
     {
     }
 }

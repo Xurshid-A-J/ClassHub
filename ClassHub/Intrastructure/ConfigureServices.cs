@@ -1,9 +1,11 @@
 ﻿using Application.Abstractions;
+using Application.Interfaces;
 using Application.Interfaces.IEntityRepositories;
 using Application.Mappings;
 using Application.Validations.Permissions;
 using Intrastructure.DataAcces;
 using Intrastructure.DataAcces.Interceptors;
+using Intrastructure.Services;
 using Intrastructure.Services.EntityRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -24,7 +26,7 @@ namespace Intrastructure
             services.AddScoped<AuditableEntitySaveChangesInterceptor>();
             services.AddScoped<IAssignmentRepository, AssignmentRepository>();
             services.AddScoped<IPermissionRepository, PermissionRepository>();
-
+            
             //services.AddTransient<IPermissionValidator,PermissionValidator>();
 
             services.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>

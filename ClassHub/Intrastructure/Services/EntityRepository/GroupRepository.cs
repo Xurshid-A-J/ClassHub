@@ -12,9 +12,7 @@ namespace Intrastructure.Services.EntityRepository
 {
     public class GroupRepository : Repository<Group>, IGroupRepository
     {
-        private readonly IApplicationDbContext dbContext;
-
-        public GroupRepository(IApplicationDbContext dbContext):base(dbContext)
-            => this.dbContext = dbContext;
+        public GroupRepository(IApplicationDbContext dbContext) : base(dbContext)
+        { }
     }
 }

@@ -1,15 +1,17 @@
 ﻿using Application.DTOs.Permission;
 using Application.Exceptions.Permissions;
 using Application.Interfaces.IEntityRepositories;
+using Application.Validations.Permissions;
 using Domain.IdentityEntities;
 using LazyCache;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace ClassHubUI.Controllers
 {
-    public class PermissionController : ApiControllerBase<Permission>
+    public partial class PermissionController : ApiControllerBase<Permission>
     {
         private readonly IPermissionRepository permissionRepository;
         private readonly IMemoryCache memoryCache;
@@ -17,7 +19,7 @@ namespace ClassHubUI.Controllers
 
         public PermissionController(IPermissionRepository permissionRepository)
             =>this.permissionRepository = permissionRepository;
-
+        
         [HttpGet("[action]")]
         public async Task<ActionResult<IEnumerable<GetPermissionDTO>>> GetAsync()
         {
@@ -30,50 +32,53 @@ namespace ClassHubUI.Controllers
             return Ok(mappedPermissions);
         }
 
-
         [HttpGet("[action]/{Id}")]
         public async Task<ActionResult<GetPermissionDTO>> GetById(Guid Id)
         {
-            Permission maybePermission = await this.permissionRepository.GetByIdAsync(Id) 
-                ?? new Permission(); // VALIDATION NEEDED
+            Permission? maybePermission = await this.permissionRepository.GetByIdAsync(Id);
+            ValidatePermissionExist(maybePermission,Id);
 
             GetPermissionDTO permissionDTO = _mapper.Map<GetPermissionDTO>(maybePermission);
 
             return Ok(permissionDTO);
         }
 
-
         [HttpPost("[action]")]
-        public async Task<ActionResult<CreatePermissionDTO>> CreateAsync(CreatePermissionDTO permissionDTO)
+        public async Task<ActionResult<CreatePermissionDTO>> CreateAsync([FromQuery]CreatePermissionDTO permissionDTO)
         {
             Permission permission = _mapper.Map<Permission>(permissionDTO);
+            await ValidatePermissionOnAddAsync(permission);
+            
+            await this.permissionRepository.CreateAsync(permission);
 
-            Permission maybePermission = await this.permissionRepository.CreateAsync(permission);
-            CreatePermissionDTO permissionDTO_result = _mapper.Map<CreatePermissionDTO>(maybePermission);
-
-            return Ok(permissionDTO_result);
+            return Ok(permissionDTO);
         }
 
-
         [HttpPut("[action]")]
-        public async Task<ActionResult<GetPermissionDTO>> UpdateAsync(Permission permission)
+        public async Task<ActionResult<UpdatePermissionDTO>> UpdateAsync([FromQuery]UpdatePermissionDTO permissionDTO)
         {
-            Permission maybePermission = await this.permissionRepository.GetByIdAsync(permission.Id);
+            Permission? storagePermission = await this.permissionRepository.GetByIdAsync(permissionDTO.Id);
+            
+            ValidatePermissionExist(storagePermission,permissionDTO.Id);
+            _mapper.Map(permissionDTO,storagePermission!);
+            await ValidatePermissionAsync(storagePermission!);
+            await CheckAndThrowIfPermissionAlreadyExistsAsync(storagePermission!);
+            
+            await this.permissionRepository.UpdateAsync(storagePermission!);
 
-            GetPermissionDTO mappedPermissions =_mapper.Map<GetPermissionDTO>(permission);
-
-            return Ok(mappedPermissions);
+            return Ok(_mapper.Map(storagePermission,permissionDTO));
         }
 
         [HttpDelete("[action]")]
-        public async Task<ActionResult<GetPermissionDTO>> DeleteAsync(Guid Id)
+        public async Task<ActionResult> DeleteAsync(Guid Id)
         {
-            IEnumerable<Permission> permissions = await this.permissionRepository.GetAsync(x => true);
+            Permission? storagePermission = await this.permissionRepository.GetByIdAsync(Id);
+            ValidatePermissionExist(storagePermission,Id);
 
-            IEnumerable<GetPermissionDTO> mappedPermissions =
-                _mapper.Map<List<GetPermissionDTO>>(permissions.ToList());
-
-            return Ok(mappedPermissions.ToList());
+            await this.permissionRepository.DeleteAsync(storagePermission!);
+            
+            return Ok($"Permission deleted successfully !!! ");
         }
+ 
     }
 }

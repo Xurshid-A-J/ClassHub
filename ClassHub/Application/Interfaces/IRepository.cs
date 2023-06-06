@@ -13,6 +13,6 @@ namespace Application.Interfaces
         Task<T?> GetByIdAsync(Guid id);
         Task<T> CreateAsync(T entity);
         Task<T> UpdateAsync(T entity);
-        Task<T> DeleteAsync(Guid Id);
+        Task<T> DeleteAsync(T Id);
     }
 }

@@ -12,9 +12,7 @@ namespace Intrastructure.Services.EntityRepository
 {
     public class MarkRepository : Repository<Mark>,IMarkRepository
     {
-        private readonly IApplicationDbContext dbContext;
-
-        public MarkRepository(IApplicationDbContext dbContext):base(dbContext)
-            => this.dbContext = dbContext;
+        public MarkRepository(IApplicationDbContext dbContext) : base(dbContext)
+        { }
     }
 }

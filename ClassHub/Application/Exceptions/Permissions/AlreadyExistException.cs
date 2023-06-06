@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Application.Exceptions.Permissions
 {
-    public class NullEntityException<TModel>:Exception
+    public class AlreadyExistException<TModel>:Exception
     {
-        public NullEntityException() : base($"Null {typeof(TModel).Name} error occured") 
+        public AlreadyExistException(string name) :base($" {typeof(TModel).Name} with name : {name} , already exists")
         { }
     }
 }

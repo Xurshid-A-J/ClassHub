@@ -8,5 +8,7 @@ namespace Application.DTOs.Role
 {
     public class CreateRoleDTO
     {
+        public string RoleName { get; set; }
+        public ICollection<Guid> PermissionIds { get; set; }= new HashSet<Guid>();
     }
 }

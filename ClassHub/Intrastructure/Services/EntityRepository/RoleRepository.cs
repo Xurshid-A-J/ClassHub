@@ -12,9 +12,7 @@ namespace Intrastructure.Services.EntityRepository
 {
     public class RoleRepository : Repository<Role>, IRoleRepository
     {
-        private readonly IApplicationDbContext dbContext;
-
         public RoleRepository(IApplicationDbContext dbContext) : base(dbContext)
-            => this.dbContext = dbContext;
+        { }
     }
 }
